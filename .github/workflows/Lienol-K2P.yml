@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: K2P
+name: Lienol-K2P
 
 on:
   repository_dispatch:
@@ -16,7 +16,7 @@ on:
     branches:
       - master
     paths:
-      - 'K2P.config'
+      - 'Lienol-K2P.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
