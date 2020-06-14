@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build OpenWrt
+name: Lienol-HC5962
 
 on:
   repository_dispatch:
@@ -16,11 +16,11 @@ on:
     branches:
       - master
     paths:
-      - '.config'
+      - 'Lienol-HC5962.config'
 #  schedule:
 #    - cron: 0 8 * * 5
-  watch:
-    types: started
+#  watch:
+#    types: started
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
