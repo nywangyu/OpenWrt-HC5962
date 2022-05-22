@@ -15,7 +15,7 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 
 git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 git clone https://github.com/1wrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-rm -rf openwrt/package/lean/luci-theme-argon
+rm -rf package/lean/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/TorBoxCode/luci-app-tencentddns package/luci-app-tencentddns
 git clone https://github.com/vernesong/OpenClash.git package/luci-app-openclash
