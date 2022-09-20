@@ -23,12 +23,12 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: X64/.config
-  DIY_P1_SH: X64/diy-part1.sh
-  DIY_P2_SH: X64/diy-part2.sh
+  CONFIG_FILE: HC5962/.config
+  DIY_P1_SH: HC5962/diy-part1.sh
+  DIY_P2_SH: HC5962/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
+  UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
