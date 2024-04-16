@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: 360v6
+name: baili
 
 on:
   repository_dispatch:
@@ -20,12 +20,12 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/openwrt-gl-ax1800
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 360v6/.config
-  DIY_P1_SH: 360v6/diy-part1.sh
-  DIY_P2_SH: 360v6/diy-part2.sh
+  CONFIG_FILE: baili/.config
+  DIY_P1_SH: baili/diy-part1.sh
+  DIY_P2_SH: baili/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
