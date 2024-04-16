@@ -18,4 +18,4 @@ git clone https://github.com/1wrt/luci-app-ikoolproxy.git package/luci-app-ikool
 rm -rf package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/TorBoxCode/luci-app-tencentddns package/luci-app-tencentddns
-git clone https://github.com/vernesong/OpenClash.git package/luci-app-openclash
+# git clone https://github.com/vernesong/OpenClash.git package/luci-app-openclash
