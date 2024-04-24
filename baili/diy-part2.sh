@@ -17,5 +17,5 @@ git clone https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 git clone https://github.com/1wrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 rm -rf package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-git clone https://github.com/TorBoxCode/luci-app-tencentddns package/luci-app-tencentddns
-# git clone https://github.com/vernesong/OpenClash.git package/luci-app-openclash
+##-----------------Manually set CPU frequency for MT7986A-----------------
+sed -i '/"mediatek"\/\*|\"mvebu"\/\*/{n; s/.*/\tcpu_freq="2.0GHz" ;;/}' package/emortal/autocore/files/generic/cpuinfo
