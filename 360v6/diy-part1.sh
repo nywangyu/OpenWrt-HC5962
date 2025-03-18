@@ -19,6 +19,6 @@
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
-git clone https://github.com/gngpp/luci-app-design-config.git package/luci-app-design-config
+#git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
+#git clone https://github.com/gngpp/luci-app-design-config.git package/luci-app-design-config
 echo 'src-git dahuilang https://github.com/shidahuilang/openwrt-package;Immortalwrt' >> feeds.conf.default
