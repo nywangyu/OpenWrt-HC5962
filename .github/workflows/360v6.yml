@@ -173,14 +173,15 @@ jobs:
         path: ${{ env.FIRMWARE }}
 
     - name: 发布固件
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2.1.0
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        files: ${{ env.FIRMWARE }}/*
+        name: ${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.UPLOAD_TAG_NAME }}${{ env.BUILD_DOCKERMAN }}
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
 
     - name: 删除运行流程
       uses: GitRML/delete-workflow-runs@main
