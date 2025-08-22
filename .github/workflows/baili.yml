@@ -192,17 +192,6 @@ jobs:
         )
         fi
 
-        echo "复制脚本文件..."
-        if [ -n "$(ls -A "${GITHUB_WORKSPACE}/openwrt/build/scripts/files" 2>/dev/null)" ]; then
-          if [ -d "files" ];then
-           cp -rf ${GITHUB_WORKSPACE}/openwrt/build/scripts/files/* files
-           chmod -R 755 ${HOME}/files
-          else
-           cp -rf ${GITHUB_WORKSPACE}/openwrt/build/scripts/files/ files
-           chmod -R 755 ${HOME}/files
-          fi
-        fi
-
         echo "复制配置文件..."
         if [ -n "$(ls -A "${WORKPATH}/files" 2>/dev/null)" ]; then
           if [ -d "files" ];then
