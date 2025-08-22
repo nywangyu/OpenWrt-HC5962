@@ -33,7 +33,7 @@ KERNEL_TESTING_PATCHVER=$(cat target/linux/mediatek/Makefile|grep KERNEL_TESTING
 #  echo "内核版本已更新为 $KERNEL_TESTING_PATCHVER"
 #else
 # echo "内核版本不需要更新"
-fi
+#fi
 
 #
 #sed -i 's#192.168.1.1#10.0.0.1#g' $NET                                                    # 定制默认IP
@@ -51,7 +51,7 @@ sed -i 's#%D %V, %C#%D %V, %C Lean_jdcloud#g' package/base-files/files/etc/banne
 # sed -i 's#option database_generations 10#option database_generations 3#g' feeds/packages/net/nlbwmon/files/nlbwmon.config               # 修改流量统计数据周期
 # sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config               # 修改流量统计数据存放默认位置
 # sed -i 's#interval: 5#interval: 1#g' feeds/luci/applications/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon/wrtbwmon.js               # wrtbwmon默认刷新时间更改为1秒
-sed -i '/exit 0/i\ethtool -s eth0 speed 10000 duplex full' package/base-files/files//etc/rc.local               # 强制显示2500M和全双工（默认PVE下VirtIO不识别）
+# sed -i '/exit 0/i\ethtool -s eth0 speed 10000 duplex full' package/base-files/files//etc/rc.local               # 强制显示2500M和全双工（默认PVE下VirtIO不识别）
 
 # ●●●●●●●●●●●●●●●●●●●●●●●●定制部分●●●●●●●●●●●●●●●●●●●●●●●● #
 
