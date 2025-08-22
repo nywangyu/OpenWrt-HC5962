@@ -32,11 +32,11 @@ KERNEL_TESTING_PATCHVER=$(cat target/linux/mediatek/Makefile|grep KERNEL_TESTING
 #  sed -i "s/$KERNEL_PATCHVER/$KERNEL_TESTING_PATCHVER/g" target/linux/mediatek/Makefile        # 修改内核版本为最新
 #  echo "内核版本已更新为 $KERNEL_TESTING_PATCHVER"
 #else
-  echo "内核版本不需要更新"
+# echo "内核版本不需要更新"
 fi
 
 #
-sed -i 's#192.168.1.1#10.0.0.1#g' $NET                                                    # 定制默认IP
+#sed -i 's#192.168.1.1#10.0.0.1#g' $NET                                                    # 定制默认IP
 # sed -i 's#LEDE#OpenWrt-jdcloud#g' $NET                                                     # 修改默认名称为OpenWrt-jdcloud
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' $ZZZ                                             # 取消系统默认密码
 sed -i "s/LEDE /ONE build $(TZ=UTC-8 date "+%Y.%m.%d") @ LEDE /g" $ZZZ              # 增加自己个性名称
