@@ -11,6 +11,7 @@
 cat feeds.conf.default
 
 # 添加第三方软件包
+git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8
 
 # 更新并安装源
 #./scripts/feeds clean
