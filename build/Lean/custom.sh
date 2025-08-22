@@ -30,7 +30,7 @@ KERNEL_TESTING_PATCHVER=$(cat target/linux/mediatek/Makefile|grep KERNEL_TESTING
 #if [[ $KERNEL_TESTING_PATCHVER > $KERNEL_PATCHVER ]]; then
 #  sed -i "s/$KERNEL_PATCHVER/$KERNEL_TESTING_PATCHVER/g" target/linux/mediatek/Makefile        # 修改内核版本为最新
 #  echo "内核版本已更新为 $KERNEL_TESTING_PATCHVER"
-else
+#else
   echo "内核版本不需要更新"
 fi
 
