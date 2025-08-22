@@ -213,8 +213,8 @@ jobs:
         make defconfig
 
     - name: SSH远程连接服务器
-      uses: db-one/debugger-action@main
-      if: env.SSH_ACTIONS == 'true' || (github.event.inputs.SSH_ACTION == 'true')
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
