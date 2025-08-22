@@ -41,7 +41,7 @@ on:
 
 env: 
   TZ: Asia/Shanghai
-  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   WECHAT_WORK_URL: ${{ secrets.WECHAT_WORK_URL }}
   WECHAT_WORK_TOKEN: ${{ secrets.WECHAT_WORK_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
