@@ -8,10 +8,12 @@
 # sed -i 's@#src-git helloworld@src-git helloworld@g' feeds.conf.default # 启用helloworld
 # sed -i 's@src-git luci@# src-git luci@g' feeds.conf.default # 禁用18.06Luci
 # sed -i 's@## src-git luci@src-git luci@g' feeds.conf.default # 启用23.05Luci
+sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
 cat feeds.conf.default
 
 # 添加第三方软件包
-git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8
+# git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8
 
 # 更新并安装源
 #./scripts/feeds clean
