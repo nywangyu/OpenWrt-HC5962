@@ -72,48 +72,6 @@ EOF
 
 # =======================================================
 
-# 检查 OpenClash 是否启用编译
-if grep -qE '^(CONFIG_PACKAGE_luci-app-openclash=n|# CONFIG_PACKAGE_luci-app-openclash=)' "${WORKPATH}/$CUSTOM_SH"; then
-  # OpenClash 未启用，不执行任何操作
-  echo "OpenClash 未启用编译"
-  echo 'rm -rf /etc/openclash' >> $ZZZ
-else
-  # OpenClash 已启用，执行配置
-  if grep -q "CONFIG_PACKAGE_luci-app-openclash=y" "${WORKPATH}/$CUSTOM_SH"; then
-    # 判断系统架构
-    arch=$(uname -m)  # 获取系统架构
-    case "$arch" in
-      x86_64)
-        arch="amd64"
-        ;;
-      aarch64|arm64)
-        arch="arm64"
-        ;;
-    esac
-    # OpenClash Meta 开始配置内核
-    echo "正在执行：为OpenClash下载内核"
-    mkdir -p $HOME/clash-core
-    mkdir -p $HOME/files/etc/openclash/core
-    cd $HOME/clash-core
-    # 下载Meta内核
-    wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-$arch.tar.gz
-    if [[ $? -ne 0 ]];then
-      wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-$arch.tar.gz
-    else
-      echo "OpenClash Meta内核压缩包下载成功，开始解压文件"
-    fi
-    tar -zxvf clash-linux-$arch.tar.gz
-    if [[ -f "$HOME/clash-core/clash" ]]; then
-      mv -f $HOME/clash-core/clash $HOME/files/etc/openclash/core/clash_meta
-      chmod +x $HOME/files/etc/openclash/core/clash_meta
-      echo "OpenClash Meta内核配置成功"
-    else
-      echo "OpenClash Meta内核配置失败"
-    fi
-    rm -rf $HOME/clash-core/clash-linux-$arch.tar.gz
-    rm -rf $HOME/clash-core
-  fi
-fi
 
 # =======================================================
 
@@ -168,118 +126,6 @@ CONFIG_TARGET_mediatek_filogic=y
 CONFIG_TARGET_mediatek_filogic_DEVICE_jdcloud_re-cs-05=y
 EOF
 
-# 固件压缩:
-cat >> .config <<EOF
-CONFIG_TARGET_IMAGES_GZIP=y
-EOF
-
-# IPv6支持:
-cat >> .config <<EOF
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_ipv6helper=y
-EOF
-
-# 多文件系统支持:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_kmod-fs-nfs=y
-# CONFIG_PACKAGE_kmod-fs-nfs-common=y
-# CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-# CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-# CONFIG_PACKAGE_kmod-fs-ntfs=y
-# CONFIG_PACKAGE_kmod-fs-squashfs=y
-# EOF
-
-# USB3.0支持:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_kmod-usb-ohci=y
-# CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-# CONFIG_PACKAGE_kmod-usb2=y
-# CONFIG_PACKAGE_kmod-usb2-pci=y
-# CONFIG_PACKAGE_kmod-usb3=y
-# EOF
-
-# 多线多拨:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-syncdial=y #多拨虚拟WAN
-# CONFIG_PACKAGE_luci-app-mwan3=y #MWAN负载均衡
-# CONFIG_PACKAGE_luci-app-mwan3helper=n #MWAN3分流助手
-# EOF
-
-# 第三方插件选择:
-cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
-CONFIG_PACKAGE_luci-app-openclash=y #OpenClash客户端
-#CONFIG_PACKAGE_luci-app-nikki=y #nikki 客户端
-# CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-# CONFIG_PACKAGE_luci-app-eqos=y #IP限速
-# CONFIG_PACKAGE_luci-app-control-weburl=y #网址过滤
-# CONFIG_PACKAGE_luci-app-smartdns=y #smartdns服务器
-# CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardhome
-# CONFIG_PACKAGE_luci-app-argon-config=y #argon主题设置
-# CONFIG_PACKAGE_luci-app-autotimeset=y #定时重启系统，网络
-# CONFIG_PACKAGE_luci-app-ddnsto=y #小宝开发的DDNS.to内网穿透
-# CONFIG_PACKAGE_ddnsto=y #DDNS.to内网穿透软件包
-EOF
-
-
-# Passwall插件:
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall=y
-# CONFIG_PACKAGE_luci-app-passwall2=y
-# CONFIG_PACKAGE_naiveproxy=y
-CONFIG_PACKAGE_chinadns-ng=y
-# CONFIG_PACKAGE_brook=y
-CONFIG_PACKAGE_trojan-go=y
-CONFIG_PACKAGE_xray-plugin=y
-CONFIG_PACKAGE_shadowsocks-rust-sslocal=n
-EOF
-
-# Turbo ACC 网络加速:
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-turboacc=y
-EOF
-
-# 常用LuCI插件:
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-adbyby-plus=n #adbyby去广告
-CONFIG_PACKAGE_luci-app-webadmin=n #Web管理页面设置
-CONFIG_PACKAGE_luci-app-ddns=n #DDNS服务
-CONFIG_DEFAULT_luci-app-vlmcsd=n #KMS激活服务器
-CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
-CONFIG_PACKAGE_luci-app-autoreboot=n #定时重启
-CONFIG_PACKAGE_luci-app-upnp=n #通用即插即用UPnP(端口自动转发)
-CONFIG_PACKAGE_luci-app-arpbind=n #IP/MAC绑定
-CONFIG_PACKAGE_luci-app-accesscontrol=n #上网时间控制
-CONFIG_PACKAGE_luci-app-wol=n #网络唤醒
-CONFIG_PACKAGE_luci-app-nps=n #nps内网穿透
-CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
-CONFIG_PACKAGE_luci-app-nlbwmon=n #宽带流量监控
-CONFIG_PACKAGE_luci-app-wrtbwmon=n #实时流量监测
-CONFIG_PACKAGE_luci-app-haproxy-tcp=n #Haproxy负载均衡
-CONFIG_PACKAGE_luci-app-diskman=n #磁盘管理磁盘信息
-CONFIG_PACKAGE_luci-app-transmission=n #Transmission离线下载
-CONFIG_PACKAGE_luci-app-qbittorrent=n #qBittorrent离线下载
-CONFIG_PACKAGE_luci-app-amule=n #电驴离线下载
-CONFIG_PACKAGE_luci-app-xlnetacc=n #迅雷快鸟
-CONFIG_PACKAGE_luci-app-zerotier=n #zerotier内网穿透
-CONFIG_PACKAGE_luci-app-hd-idle=n #磁盘休眠
-CONFIG_PACKAGE_luci-app-unblockmusic=n #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-airplay2=n #Apple AirPlay2音频接收服务器
-CONFIG_PACKAGE_luci-app-music-remote-center=n #PCHiFi数字转盘遥控
-CONFIG_PACKAGE_luci-app-usb-printer=n #USB打印机
-CONFIG_PACKAGE_luci-app-sqm=n #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-dockerman=y #Docker管理
-CONFIG_PACKAGE_luci-app-ttyd=n #ttyd
-#
-# 文件共享相关(禁用):
-#
-CONFIG_PACKAGE_luci-app-minidlna=n #miniDLNA服务
-CONFIG_PACKAGE_luci-app-vsftpd=n #FTP 服务器
-CONFIG_PACKAGE_luci-app-samba=n #网络共享
-CONFIG_PACKAGE_autosamba=n #网络共享
-CONFIG_PACKAGE_samba36-server=n #网络共享
-EOF
-
 # LuCI主题:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
@@ -292,6 +138,8 @@ CONFIG_PACKAGE_luci-app-argon-config=y
 CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-quickstart=y
 CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-i18n-quickstart-zh-cn=y
