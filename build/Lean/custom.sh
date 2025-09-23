@@ -142,7 +142,7 @@ CONFIG_PACKAGE_ca-certificates=y
 CONFIG_PACKAGE_libustream-openssl=y
 CONFIG_PACKAGE_lua-openssl=y
 ## 默认feeds可选插件
-CONFIG_PACKAGE_luci-app-attendedsysupgrade=y
+CONFIG_PACKAGE_luci-app-autoupdate=y
 CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-homeproxy=y
