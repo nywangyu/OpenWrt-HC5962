@@ -40,7 +40,7 @@ KERNEL_TESTING_PATCHVER=$(cat target/linux/mediatek/Makefile|grep KERNEL_TESTING
 #sed -i 's#192.168.1.1#10.0.0.1#g' $NET                                                    # 定制默认IP
 # sed -i 's#LEDE#OpenWrt-jdcloud#g' $NET                                                     # 修改默认名称为OpenWrt-jdcloud
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' $ZZZ                                             # 取消系统默认密码
-sed -i "s/LEDE /ONE build $(TZ=UTC-8 date "+%Y.%m.%d") @ LEDE /g" $ZZZ              # 增加自己个性名称
+sed -i "s/LEDE /WangYu build $(TZ=UTC-8 date "+%Y.%m.%d") @ LEDE /g" $ZZZ              # 增加自己个性名称
 echo "uci set luci.main.mediaurlbase=/luci-static/argon" >> $ZZZ                      # 设置默认主题(如果编译可会自动修改默认主题的，有可能会失效)
 
 # ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● #
