@@ -8,8 +8,9 @@
 # sed -i 's@#src-git helloworld@src-git helloworld@g' feeds.conf.default # 启用helloworld
 # sed -i 's@src-git luci@# src-git luci@g' feeds.conf.default # 禁用18.06Luci
 # sed -i 's@## src-git luci@src-git luci@g' feeds.conf.default # 启用23.05Luci
-sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
+# sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+# sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
+sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 cat feeds.conf.default
 
 # 添加第三方软件包
@@ -20,6 +21,7 @@ cat feeds.conf.default
 ./scripts/feeds update -a && ./scripts/feeds install -a -f
 
 # 删除部分默认包
+rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 rm -rf feeds/luci/applications/luci-app-qbittorrent
 rm -rf feeds/luci/themes/luci-theme-argon
 
