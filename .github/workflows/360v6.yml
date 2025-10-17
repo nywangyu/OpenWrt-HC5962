@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/VIKINGYFY/immortalwrt
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/LiBwrt/openwrt-6.x
+  REPO_BRANCH: k6.12-nss
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 360v6/.config
   DIY_P1_SH: 360v6/diy-part1.sh
