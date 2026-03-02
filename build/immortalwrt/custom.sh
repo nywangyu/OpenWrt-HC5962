@@ -8,7 +8,7 @@
 cat feeds.conf.default
 
 # 添加第三方软件包
-
+sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 # 更新并安装源
 # ./scripts/feeds clean
