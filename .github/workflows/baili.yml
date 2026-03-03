@@ -7,7 +7,7 @@
 #
 
 
-name: 编译OpenWrt固件
+name: ax6000
 
 on:
   workflow_dispatch:
