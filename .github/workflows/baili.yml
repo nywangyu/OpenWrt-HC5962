@@ -12,12 +12,12 @@ name: 编译OpenWrt固件
 on:
   workflow_dispatch:
     inputs:
-      Lean_ax6000:
-        description: '编译 Lean_ax6000'
+      Lean:
+        description: '编译 Lean'
         type: boolean
         default: false
-      immortalwrt_ax6000:
-        description: '编译 immortalwrt_ax6000'
+      immortalwrt:
+        description: '编译 immortalwrt'
         type: boolean
         default: false
       CACHE_BUILD:
@@ -67,11 +67,11 @@ jobs:
           MODELS=()
           # 定时触发编译全部
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            MODELS=("Lean_ax6000" "immortalwrt_ax6000")
+            MODELS=("Lean" "immortalwrt")
           else
             # 手动触发判断
-            [ "${{ github.event.inputs.Lean_ax6000 }}" = "true" ] && MODELS+=("Lean_ax6000")
-            [ "${{ github.event.inputs.immortalwrt_ax6000 }}" = "true" ] && MODELS+=("immortalwrt_ax6000")
+            [ "${{ github.event.inputs.Lean }}" = "true" ] && MODELS+=("Lean")
+            [ "${{ github.event.inputs.immortalwrt }}" = "true" ] && MODELS+=("immortalwrt")
           fi
           
           # 转换为 JSON 数组
