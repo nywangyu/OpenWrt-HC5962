@@ -50,7 +50,16 @@ env:
 
 jobs: 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    env:
+      CACHE_BUILD: ${{ github.event.inputs.CACHE_BUILD || 'true' }}
+      BUILD_SSH: ${{ github.event.inputs.Build_SSH || 'false' }}
+      BUILD_MOD: ${{ github.event.inputs.Build_Mod || 'false' }}
+    if: needs.build-openwrt.outputs.selected_models != '[]' && (github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id)
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(needs.build-openwrt.outputs.selected_models) }}
 
     name: 编译 ${{matrix.target}}
     strategy:
