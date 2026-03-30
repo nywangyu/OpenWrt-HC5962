@@ -8,7 +8,10 @@
 cat feeds.conf.default
 
 # 添加第三方软件包
-sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+# sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+git clone https://github.com/nywangyu/OpenWrt-Packages.git package/nywangyu-packages
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/kenzok8/golang -b 1.26 feeds/packages/lang/golang
 
 # 更新并安装源
 # ./scripts/feeds clean
@@ -18,7 +21,7 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 rm -rf feeds/luci/applications/luci-app-qbittorrent
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf package/dbone-packages/passwall/packages/v2ray-geoview
+rm -rf package/nywangyu-packages/passwall/packages/v2ray-geoview
 
 # 自定义定制选项
 NET="package/base-files/files/bin/config_generate"
